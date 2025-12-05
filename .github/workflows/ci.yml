@@ -9,16 +9,14 @@ jobs:
   build:
     name: 'Build and Push'
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 18, 20 ]
+    
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup Node | ${{matrix.node}}
-        uses: actions/setup-node@v6
+      - name: Setup Node
+        uses: actions/setup-node@v4
         with:
-          node-version: ${{matrix.node}}
+          node-version: 22
           cache: 'yarn'
       - run: yarn
       - run: yarn run test
