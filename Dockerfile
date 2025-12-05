@@ -2,13 +2,13 @@ FROM node:20 AS build
 
 WORKDIR /usr/src/app
 
-COPY package.json yarn.lock .yarnrc.yml ./
-COPY .yarn ./.yarn
+COPY package.json yarn.lock ./
+RUN yarn
 
 COPY . .
 
 RUN yarn run build
-RUN yarn workspaces focus --production && yarn cache clean
+RUN yarn install --production && yarn cache clean
 
 FROM node:20-alpine3.23
 
