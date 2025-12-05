@@ -1,4 +1,4 @@
-FROM node:20 AS build
+FROM node:22 AS build
 
 WORKDIR /usr/src/app
 
@@ -10,7 +10,7 @@ COPY . .
 RUN yarn run build
 RUN yarn install --production && yarn cache clean
 
-FROM node:20-alpine3.23
+FROM node:22-alpine
 
 WORKDIR /usr/src/app
 
